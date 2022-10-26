@@ -11,6 +11,28 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <!-- ログイン中 -->
+        <li>Home</li>
+        <li>Users</li>
+        <li>Books</li>
+        <li>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <!-- ログアウト中 -->
+        <li>Home</li>
+        <li>About</li>
+        <li>
+          <%= link_to "Sign Up", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "Log in", new_user_session_path %>
+        </li>
+      <% end %>
+    </header>
+
     <%= yield %>
   </body>
 </html>
